@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Маленькие домашние животные — грызуны</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #2f2a22;
+      background: #fff8ec;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #8bc34a, #d7b377);
+      color: white;
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 22px;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    nav a:hover {
+      color: #3b2d13;
+    }
+
+    .hero {
+      min-height: 88vh;
+      padding: 80px 8%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      background:
+        linear-gradient(rgba(255, 248, 236, 0.88), rgba(255, 248, 236, 0.88)),
+        url("https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=1400&q=80") center/cover;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      color: #3f321f;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: #5f513f;
+    }
+
+    .button {
+      display: inline-block;
+      background: #6da83f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(109, 168, 63, 0.32);
+      transition: 0.25s;
+    }
+
+    .button:hover {
+      background: #4f862c;
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 18px 45px rgba(69, 51, 26, 0.18);
+    }
+
+    .hero-card h2 {
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: #4b3a22;
+    }
+
+    .hero-card ul {
+      list-style: none;
+    }
+
+    .hero-card li {
+      margin-bottom: 14px;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .hero-card li::before {
+      content: "🐾";
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    section {
+      padding: 76px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 18px;
+      color: #3f321f;
+    }
+
+    .section-text {
+      max-width: 760px;
+      margin: 0 auto 42px;
+      text-align: center;
+      color: #6a5b48;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(70, 48, 20, 0.1);
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 36px rgba(70, 48, 20, 0.16);
+    }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 22px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #4a381f;
+    }
+
+    .card p {
+      color: #685b4a;
+    }
+
+    .care {
+      background: #f1e2c6;
+    }
+
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .care-item {
+      background: #fffaf1;
+      border-radius: 22px;
+      padding: 28px;
+      border: 2px solid rgba(139, 195, 74, 0.28);
+    }
+
+    .care-item span {
+      display: block;
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .care-item h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #47361f;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .facts-box {
+      background: white;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 12px 32px rgba(70, 48, 20, 0.11);
+    }
+
+    .facts-box h2 {
+      font-size: 34px;
+      margin-bottom: 18px;
+      color: #3f321f;
+    }
+
+    .facts-box p {
+      margin-bottom: 14px;
+      color: #625443;
+    }
+
+    .facts img {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 14px 34px rgba(70, 48, 20, 0.15);
+    }
+
+    .contact {
+      background: linear-gradient(135deg, #7ead48, #cfa86a);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 38px;
+      margin-bottom: 18px;
+    }
+
+    .contact p {
+      max-width: 700px;
+      margin: 0 auto 28px;
+      font-size: 18px;
+    }
+
+    form {
+      max-width: 620px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 15px 18px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      background: #3f321f;
+      color: white;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      transition: 0.25s;
+    }
+
+    button:hover {
+      background: #241b10;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #3f321f;
+      color: #f6ead8;
+      text-align: center;
+      padding: 24px 8%;
+    }
+
+    @media (max-width: 1000px) {
+      .hero,
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .care-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      header {
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px 6%;
+      }
+
+      nav a {
+        margin: 0 8px;
+        font-size: 14px;
+      }
+
+      .hero {
+        padding: 56px 6%;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      section {
+        padding: 56px 6%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title,
+      .contact h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Домик грызунов</div>
+    <nav>
+      <a href="#animals">Виды</a>
+      <a href="#care">Уход</a>
+      <a href="#facts">Факты</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Маленькие домашние животные-грызуны</h1>
+        <p>
+          Хомяки, морские свинки, крысы, мыши и шиншиллы — умные, активные и интересные питомцы. Им нужен правильный уход, безопасный дом и внимательное отношение.
+        </p>
+        <a class="button" href="#animals">Познакомиться с питомцами</a>
+      </div>
+
+      <div class="hero-card">
+        <h2>Почему выбирают грызунов</h2>
+        <ul>
+          <li>Они занимают мало места в квартире.</li>
+          <li>За ними интересно наблюдать каждый день.</li>
+          <li>Многие виды быстро привыкают к человеку.</li>
+          <li>Для них можно создавать уютные домики, тоннели и игровые зоны.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="animals">
+      <h2 class="section-title">Популярные домашние грызуны</h2>
+      <p class="section-text">
+        Каждый вид отличается характером, образом жизни и требованиями к уходу. Перед покупкой питомца важно заранее изучить его привычки.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80" alt="Хомяк" />
+          <div class="card-content">
+            <h3>Хомяк</h3>
+            <p>Небольшой ночной питомец. Любит беговое колесо, домик, запасы корма и спокойную обстановку.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1603736087997-5daec6092347?auto=format&fit=crop&w=800&q=80" alt="Морская свинка" />
+          <div class="card-content">
+            <h3>Морская свинка</h3>
+            <p>Общительное животное с мягким характером. Нуждается в просторной клетке, сене и свежих овощах.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1626627937888-389e21f78319?auto=format&fit=crop&w=800&q=80" alt="Домашняя крыса" />
+          <div class="card-content">
+            <h3>Крыса</h3>
+            <p>Очень умный и социальный питомец. Быстро обучается, узнаёт хозяина и любит общение.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?auto=format&fit=crop&w=800&q=80" alt="Шиншилла" />
+          <div class="card-content">
+            <h3>Шиншилла</h3>
+            <p>Активный зверёк с густым мехом. Ей нужны прохлада, просторная клетка и песочные ванны.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="care" class="care">
+      <h2 class="section-title">Основы правильного ухода</h2>
+      <p class="section-text">
+        Грызуны кажутся неприхотливыми, но их здоровье зависит от условий содержания, питания и безопасности.
+      </p>
+
+      <div class="care-grid">
+        <div class="care-item">
+          <span>🏠</span>
+          <h3>Просторное жильё</h3>
+          <p>Клетка должна быть безопасной, чистой и достаточно большой. Внутри нужны укрытие, поилка, кормушка и игрушки.</p>
+        </div>
+
+        <div class="care-item">
+          <span>🥕</span>
+          <h3>Подходящее питание</h3>
+          <p>Рацион зависит от вида животного. Нельзя давать сладости, солёную еду и продукты со стола человека.</p>
+        </div>
+
+        <div class="care-item">
+          <span>🧼</span>
+          <h3>Чистота и здоровье</h3>
+          <p>Подстилку нужно регулярно менять. При вялости, отказе от еды или странном поведении нужен ветеринар.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="facts">
+      <div class="facts">
+        <div class="facts-box">
+          <h2>Интересные факты</h2>
+          <p><strong>Хомяки</strong> переносят еду в защёчных мешках и могут делать большие запасы.</p>
+          <p><strong>Крысы</strong> способны запоминать маршруты, реагировать на имя и обучаться простым трюкам.</p>
+          <p><strong>Морские свинки</strong> часто общаются звуками: посвистывают, урчат и пищат.</p>
+          <p><strong>Шиншиллы</strong> не купаются в воде. Для ухода за мехом им нужен специальный песок.</p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1612267168669-679c961c5b31?auto=format&fit=crop&w=1000&q=80" alt="Маленький грызун" />
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Нужна памятка по уходу?</h2>
+      <p>
+        Оставьте сообщение, и мы подготовим короткий список правил для выбранного питомца.
+      </p>
+
+      <form>
+        <input type="text" placeholder="Ваше имя" />
+        <input type="email" placeholder="Ваш e-mail" />
+        <textarea placeholder="Какой питомец вас интересует?"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Домик грызунов. Одностраничный сайт о маленьких домашних животных.</p>
+  </footer>
+</body>
+</html>
